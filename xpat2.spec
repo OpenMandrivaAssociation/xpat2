@@ -1,15 +1,17 @@
 Summary:	A set of Solitaire type games for the X Window System
 Name:		xpat2
 Version:	1.07
-Release:    	19mdk
+Release:    	%mkrel 20
 License:	GPL
 Group:		Games/Cards
 Source:		ftp://sunsite.unc.edu/pub/Linux/games/solitaires/%{name}-%{version}-src.tar.bz2	
 Source1:	xpat2
 Patch:		xpat2-fixes.patch.bz2
 Patch1:		xpat2-1.07-lib64.patch.bz2
-BuildRequires:	XFree86
+Patch2:		xpat2-1.07-gcc41.patch.bz2
+BuildRequires:	imake
 BuildRequires:	qt3-devel
+BuildRequires:	perl
 BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 PreReq:		rpm-helper
 
@@ -23,6 +25,7 @@ Spider, Klondike, and other card games.
 %setup -q
 %patch -p1 -b kk1
 %patch1 -p1 -b .lib64
+%patch2 -p0 -b .gcc41
 
 %build
 make clean
@@ -41,7 +44,7 @@ perl -p -i -e "s|CDEBUGFLAGS = .*|CDEBUGFLAGS = $RPM_OPT_FLAGS|" Makefile
 # 1.0.7-1
 perl -p -i -e "s|chown.*||" Makefile
 perl -p -i -e "s|-lqt|-lqt-mt|" Makefile
-
+perl -p -i -e "s|LN = ln -s|LN = echo|" Makefile
 make CDEBUGFLAGS="$RPM_OPT_FLAGS" CXXDEBUGFLAGS="$RPM_OPT_FLAGS"
 
 
@@ -50,7 +53,7 @@ rm -rf %buildroot
 %makeinstall DESTDIR=%buildroot \
 	XPATROOT=%buildroot/usr/games/lib/xpat \
 	XPATMANDIR=%buildroot/usr/share/man/man6 \
-	APPDEFSDIR=%buildroot/usr/X11R6/lib
+	APPDEFSDIR=%buildroot/usr/lib
 install -m 755 -d %buildroot%{_menudir}
 install -m 644 %SOURCE1 %buildroot%{_menudir}/
 mkdir -p %buildroot/var/lib/games/
@@ -68,12 +71,11 @@ rm -rf %buildroot
 
 %files
 %defattr(-,root,root)
-%config(noreplace) %{_sysconfdir}/X11/app-defaults/XPat
+#%config(noreplace) %{_sysconfdir}/X11/app-defaults/XPat
 %dir %{_prefix}/games/lib/xpat
 %{_prefix}/games/lib/xpat/*
 %{_mandir}/man6/xpat2.6x*
-%attr(2755, root, games) %{_prefix}/X11R6/bin/xpat2
-%{_prefix}/X11R6/lib/*/app-defaults/XPat
-%{_prefix}/X11R6/lib/X11/app-defaults
+%attr(2755, root, games) %{_prefix}/bin/xpat2
+%{_prefix}/lib/*/app-defaults/XPat
 %{_menudir}/*
 %attr(664, root, games) %ghost /var/lib/games/xpat.log
