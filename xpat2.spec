@@ -12,6 +12,7 @@ Patch2:		xpat2-1.07-gcc41.patch.bz2
 BuildRequires:	imake
 BuildRequires:	qt3-devel
 BuildRequires:	perl
+BuildRequires:	libxpm-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 PreReq:		rpm-helper
 
