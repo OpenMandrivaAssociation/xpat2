@@ -5,7 +5,6 @@ Release:    	%mkrel 20
 License:	GPL
 Group:		Games/Cards
 Source:		ftp://sunsite.unc.edu/pub/Linux/games/solitaires/%{name}-%{version}-src.tar.bz2	
-Source1:	xpat2
 Patch:		xpat2-fixes.patch.bz2
 Patch1:		xpat2-1.07-lib64.patch.bz2
 Patch2:		xpat2-1.07-gcc41.patch.bz2
@@ -56,9 +55,21 @@ rm -rf %buildroot
 	XPATMANDIR=%buildroot/usr/share/man/man6 \
 	APPDEFSDIR=%buildroot/usr/lib
 install -m 755 -d %buildroot%{_menudir}
-install -m 644 %SOURCE1 %buildroot%{_menudir}/
 mkdir -p %buildroot/var/lib/games/
 touch %buildroot/var/lib/games/xpat.log
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
+cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop << EOF
+[Desktop Entry]
+Encoding=UTF-8
+Name=%{title}
+Comment=%{summary}
+Exec=%{_bindir}/%{name} 
+Icon=cards_section
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Qt;Game;CardGame;X-MandrivaLinux-MoreApplications-Games-Cards;
+EOF
 
 %post
 %update_menus
@@ -78,5 +89,5 @@ rm -rf %buildroot
 %{_mandir}/man6/xpat2.6x*
 %attr(2755, root, games) %{_prefix}/bin/xpat2
 %{_prefix}/lib/*/app-defaults/XPat
-%{_menudir}/*
+%{_datadir}/applications/mandriva-%{name}.desktop
 %attr(664, root, games) %ghost /var/lib/games/xpat.log
