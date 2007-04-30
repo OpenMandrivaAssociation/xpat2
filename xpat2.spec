@@ -1,7 +1,7 @@
 Summary:	A set of Solitaire type games for the X Window System
 Name:		xpat2
 Version:	1.07
-Release:    	%mkrel 20
+Release:    	%mkrel 21
 License:	GPL
 Group:		Games/Cards
 Source:		ftp://sunsite.unc.edu/pub/Linux/games/solitaires/%{name}-%{version}-src.tar.bz2	
@@ -61,7 +61,7 @@ mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
 cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
 Encoding=UTF-8
-Name=%{title}
+Name=%{name}
 Comment=%{summary}
 Exec=%{_bindir}/%{name} 
 Icon=cards_section
