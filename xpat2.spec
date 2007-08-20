@@ -86,7 +86,7 @@ rm -rf %buildroot
 #%config(noreplace) %{_sysconfdir}/X11/app-defaults/XPat
 %dir %{_prefix}/games/lib/xpat
 %{_prefix}/games/lib/xpat/*
-%{_mandir}/man6/xpat2.6x*
+%{_mandir}/man6/xpat2.6*
 %attr(2755, root, games) %{_prefix}/bin/xpat2
 %{_prefix}/lib/*/app-defaults/XPat
 %{_datadir}/applications/mandriva-%{name}.desktop
