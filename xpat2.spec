@@ -1,7 +1,7 @@
 Summary:	A set of Solitaire type games for the X Window System
 Name:		xpat2
 Version:	1.07
-Release:    	%mkrel 21
+Release:    	%mkrel 22
 License:	GPL
 Group:		Games/Cards
 Source:		ftp://sunsite.unc.edu/pub/Linux/games/solitaires/%{name}-%{version}-src.tar.bz2	
@@ -13,7 +13,7 @@ BuildRequires:	qt3-devel
 BuildRequires:	perl
 BuildRequires:	libxpm-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-root
-PreReq:		rpm-helper
+Requires(pre):		rpm-helper
 
 %description
 Xpat2 is a generic patience or Solitaire game for the X Window System.
@@ -62,7 +62,7 @@ cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
 Encoding=UTF-8
 Name=%{name}
-Comment=%{summary}
+Comment=A set of Solitaire type games for the X Window System
 Exec=%{_bindir}/%{name} 
 Icon=cards_section
 Terminal=false
