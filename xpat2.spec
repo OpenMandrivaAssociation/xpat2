@@ -60,7 +60,6 @@ touch %buildroot/var/lib/games/xpat.log
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
 cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
-Encoding=UTF-8
 Name=%{name}
 Comment=A set of Solitaire type games for the X Window System
 Exec=%{_bindir}/%{name} 
