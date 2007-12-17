@@ -12,7 +12,6 @@ BuildRequires:	imake
 BuildRequires:	qt3-devel
 BuildRequires:	perl
 BuildRequires:	libxpm-devel
-BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 Requires(pre):		rpm-helper
 
 %description
