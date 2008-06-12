@@ -71,11 +71,15 @@ Categories=Qt;Game;CardGame;X-MandrivaLinux-MoreApplications-Games-Cards;
 EOF
 
 %post
+%if %mdkversion < 200900
 %update_menus
+%endif
 %create_ghostfile /var/lib/games/xpat.log root games 664
 
+%if %mdkversion < 200900
 %postun
 %clean_menus
+%endif
 
 %clean
 rm -rf %buildroot
