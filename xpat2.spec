@@ -1,7 +1,7 @@
 Summary:	A set of Solitaire type games for the X Window System
 Name:		xpat2
 Version:	1.07
-Release:    	%mkrel 23
+Release:    	%mkrel 24
 License:	GPL
 Group:		Games/Cards
 Source:		ftp://sunsite.unc.edu/pub/Linux/games/solitaires/%{name}-%{version}-src.tar.bz2	
