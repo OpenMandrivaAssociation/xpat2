@@ -2,12 +2,13 @@ Summary:	A set of Solitaire type games for the X Window System
 Name:		xpat2
 Version:	1.07
 Release:    	%mkrel 24
-License:	GPL
+License:	GPLv2+
 Group:		Games/Cards
 Source:		ftp://sunsite.unc.edu/pub/Linux/games/solitaires/%{name}-%{version}-src.tar.bz2	
-Patch:		xpat2-fixes.patch.bz2
-Patch1:		xpat2-1.07-lib64.patch.bz2
-Patch2:		xpat2-1.07-gcc41.patch.bz2
+Patch0:		xpat2-fixes.patch
+Patch1:		xpat2-1.07-lib64.patch
+Patch2:		xpat2-1.07-gcc41.patch
+Patch3:		xpat2-1.07-fix-str-fmt.patch
 BuildRequires:	imake
 BuildRequires:	qt3-devel
 BuildRequires:	perl
@@ -23,9 +24,10 @@ Spider, Klondike, and other card games.
 
 %prep
 %setup -q
-%patch -p1 -b kk1
+%patch0 -p1 -b kk1
 %patch1 -p1 -b .lib64
 %patch2 -p0 -b .gcc41
+%patch3 -p0
 
 %build
 make clean
@@ -57,8 +59,8 @@ rm -rf %buildroot
 install -m 755 -d %buildroot%{_menudir}
 mkdir -p %buildroot/var/lib/games/
 touch %buildroot/var/lib/games/xpat.log
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
-cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop << EOF
+mkdir -p %{buildroot}%{_datadir}/applications
+cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
 Name=%{name}
 Comment=A set of Solitaire type games for the X Window System
@@ -86,7 +88,6 @@ rm -rf %buildroot
 
 %files
 %defattr(-,root,root)
-#%config(noreplace) %{_sysconfdir}/X11/app-defaults/XPat
 %dir %{_prefix}/games/lib/xpat
 %{_prefix}/games/lib/xpat/*
 %{_mandir}/man6/xpat2.6*
