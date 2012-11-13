@@ -1,0 +1,11 @@
+--- src/commands.c.orig	2009-03-08 01:20:11.000000000 +0100
++++ src/commands.c	2009-03-08 01:21:44.000000000 +0100
+@@ -160,7 +160,7 @@
+ 	infosub(buf+strlen(buf), (*rules.score)(), TXT_SCOREBLOCK);
+ 	sprintf(buf+strlen(buf), " %d.", rules.maxscore);
+     } else
+-	sprintf(buf+strlen(buf), TXT_NOSCORE);
++	sprintf(buf+strlen(buf), "%s", TXT_NOSCORE);
+     show_message(buf);
+ }
+ 

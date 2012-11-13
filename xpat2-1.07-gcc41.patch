@@ -1,0 +1,11 @@
+--- src/XQtCards.h.orig	2007-04-12 15:56:42.000000000 +0100
++++ src/XQtCards.h	2007-04-12 15:56:53.000000000 +0100
+@@ -47,7 +47,7 @@
+     QPixmap *pm_cardback;	// QPixmap of the back side of the cards
+     QPixmap *pm_empty;		// place holder (clipped by emptyclip)
+     QPixmap *pm_cards[59];	// QPixmaps for 52 cards + 4 empty slots + 3 jokers
+-    QPixmap *XQtCards::load_cardback(int num);	// helper function
++    QPixmap *load_cardback(int num);	// helper function
+     QDialog *customize_dlg;	// current open dialog (only one dlg per instance */
+     QLineEdit *customize_dlg_dir;	// current input field
+     QMaskEdit *customize_dlg_cbn;	// cardback number
